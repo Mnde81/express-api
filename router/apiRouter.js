@@ -2,6 +2,8 @@ import express from 'express';
 
 export const apiRouter = express.Router();
 
+
+
 apiRouter.get('/', (req, res) => {
     const data = {
         state: 'error',
@@ -9,6 +11,14 @@ apiRouter.get('/', (req, res) => {
     };
     return res.json(data);
 });
+
+
+
+
+
+
+
+
 
 const marks = [];
 
