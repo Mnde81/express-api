@@ -9,6 +9,10 @@ const port = 3000;
 
 
 
+app.get('*', (req, res) => {
+    return res.send('Ups...404 puslapis nerastas');
+});
+
 app.use((req, res, next) => {
     return res.status(404).send("Sorry can't find that!");
 });
