@@ -226,6 +226,37 @@ apiRouter.post('/account/deposit/:name/:amount', (req, res) => {
 });
 
 
+apiRouter.post('/account/withdrawal/:name/:amount', (req, res) => {   
+    for (let i = 0; i < account.length; i++) {
+        if (req.params.name.toLowerCase() === account[i].name.toLowerCase()) {
+            account[i].amount = account[i].amount - req.params.amount;
+        }
+
+    }
+     
+    return res.json({
+        state: 'success',
+        message: 'Pinigai sėkmingai įšimti',
+    });
+});
+
+
+apiRouter.post('/account/transfer/:nameFrom/:nameTo/:amount', (req, res) => {   
+    for (let i = 0; i < account.length; i++) {
+        if (req.params.nameFrom.toLowerCase() === account[i].name.toLowerCase()) {
+            account[i].amount = account[i].amount - req.params.amount;
+        }
+        if (req.params.nameTo.toLowerCase() === account[i].name.toLowerCase()) {
+            account[i].amount = account[i].amount + req.params.amount;
+        }
+
+    }
+     
+    return res.json({
+        state: 'success',
+        message: 'Pinigai sėkmingai pervesti',
+    });
+});
 
 
 
