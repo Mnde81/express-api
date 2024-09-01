@@ -186,6 +186,30 @@ apiRouter.put('/account/jonas-jonaitis/:surname', (req, res) => {
 });
 
 
+apiRouter.get('/account/jonas-jonaitis/dob/', (req, res) => {
+    for (let i = 0; i < account.length; i++) {
+        if (account[i].name.toLowerCase() === 'jonas') {
+            return res.json(account[i]);
+        }
+    }      
+});
+
+apiRouter.put('/account/jonas-jonaitis/dob/:year-:month-:day', (req, res) => {   
+    for (let i = 0; i < account.length; i++) {
+        if (account[i].name.toLowerCase() === 'jonas') {
+            account[i].year = req.params.year; 
+            account[i].month = req.params.month;   
+            account[i].day = req.params.day;             
+        }
+    }
+     
+    return res.json({
+        state: 'success',
+        message: 'Gimimo data sėkmingai pakoreguota',
+    });
+});
+
+
 
 
 
