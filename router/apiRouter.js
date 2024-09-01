@@ -142,6 +142,13 @@ apiRouter.put('/account/:name-:surname', (req, res) => {
 
 
 
+apiRouter.get('/account/jonas-jonaitis/:name', (req, res) => {
+    for (let i = 0; i < account.length; i++) {
+        if (req.params.name.toLowerCase() === account[i].name.toLowerCase()) {
+            return res.json(account[i].name);
+        }
+    }      
+});
 
 
 
