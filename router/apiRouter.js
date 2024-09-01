@@ -164,6 +164,31 @@ apiRouter.put('/account/jonas-jonaitis/:name', (req, res) => {
 });
 
 
+apiRouter.get('/account/jonas-jonaitis/:surname', (req, res) => {
+    for (let i = 0; i < account.length; i++) {
+        if (req.params.surname.toLowerCase() === account[i].surname.toLowerCase()) {
+            return res.json(account[i].surname);
+        }
+    }      
+});
+
+apiRouter.put('/account/jonas-jonaitis/:surname', (req, res) => {   
+    for (let i = 0; i < account.length; i++) {
+        if (account[i].surname.toLowerCase() === 'jonaitis') {
+            account[i].surname = req.params.surname;           
+        }
+    }
+     
+    return res.json({
+        state: 'success',
+        message: 'Pavardė sėkmingai pakoreguota',
+    });
+});
+
+
+
+
+
 
 
 
