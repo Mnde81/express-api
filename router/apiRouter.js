@@ -211,6 +211,19 @@ apiRouter.put('/account/jonas-jonaitis/dob/:year-:month-:day', (req, res) => {
 
 
 
+apiRouter.post('/account/deposit/:name/:amount', (req, res) => {   
+    for (let i = 0; i < account.length; i++) {
+        if (req.params.name.toLowerCase() === account[i].name.toLowerCase()) {
+            account[i].amount = account[i].amount + req.params.amount;
+        }
+
+    }
+     
+    return res.json({
+        state: 'success',
+        message: 'Pinigai sėkmingai įnešti',
+    });
+});
 
 
 
