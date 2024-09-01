@@ -103,6 +103,20 @@ apiRouter.get('/account/:name-:surname', (req, res) => {
 
 
 
+apiRouter.delete('/account/:name-:surname', (req, res) => {
+    for (let i = 0; i < account.length; i++) {
+        if (req.params.name.toLowerCase() === account[i].name.toLowerCase()) {
+            account.splice(i, 1);
+        }
+
+    }
+     
+    return res.json({
+        state: 'success',
+        message: 'Sąskaita sėkmingai ištrinta',
+    });
+});
+
 
 
 
