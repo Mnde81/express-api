@@ -13,7 +13,7 @@ app.use(express.json({
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/', apiRouter);
+app.use('/api', apiRouter);
 
 app.get('*', (req, res) => {
     return res.send('Ups...404 puslapis nerastas');

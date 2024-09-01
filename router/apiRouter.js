@@ -1,15 +1,100 @@
 import express from 'express';
+import { isName, isNumber, isSurname } from '../lib/validation.js';
 
 export const apiRouter = express.Router();
 
 
 
-apiRouter.get('/', (req, res) => {
+
+
+
+
+const account = [];
+
+
+apiRouter.post('/account', (req, res) => {
+    if (typeof req.body !== 'object'
+        || Array.isArray(req.body)
+        || req.body === null) {
+        return res.json({
+            status: 'error',
+            message: 'Netinkamas duomenų tipas, turi būti objektas',
+        });
+    }
+
+    const name = req.body.name;
+    const nameError = isName(name);
+    if (nameError !== '') {
+        return res.json({
+            status: 'error',
+            message: nameError,
+        });
+    }
+
+    const surname = req.body.surname;
+    const surnameError = isSurname(surname);
+    if (surnameError !== '') {
+        return res.json({
+            status: 'error',
+            message: surnameError,
+        });
+    }
+
+    const year = req.body.year;
+    const yearError = isNumber(year);
+    if (yearError !== '') {
+        return res.json({
+            status: 'error',
+            message: yearError,
+        });
+    }
+
+    const month = req.body.month;
+    const monthError = isNumber(month);
+    if (monthError !== '') {
+        return res.json({
+            status: 'error',
+            message: monthError,
+        });
+    }
+
+    const day = req.body.day;
+    const dayError = isNumber(day);
+    if (dayError !== '') {
+        return res.json({
+            status: 'error',
+            message: dayError,
+        });
+    }
+
+    if (year > 2006) {
+        return res.json({
+            status: 'error',
+            message: 'Sąskaitą gali atsidaryti tik asmenys sulaukę 18 metų',
+        });
+
+    }
+
+
+
+    account.push(req.body);
+
+    return res.json({
+        state: 'success',
+        message: 'Saskaita sekmingai sukurta',
+    });
+});
+
+
+
+
+
+apiRouter.get('/account', (req, res) => {
     const data = {
         state: 'error',
         message: 'Nurodyk konkretu API endpoint\'a',
     };
-    return res.json(data);
+    return res.json(account);
 });
 
 
@@ -20,7 +105,7 @@ apiRouter.get('/', (req, res) => {
 
 
 
-const marks = [];
+
 
 apiRouter.get('/my-marks', (req, res) => {
     return res.json(marks);
