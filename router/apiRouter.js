@@ -75,8 +75,6 @@ apiRouter.post('/account', (req, res) => {
 
     }
 
-
-
     account.push(req.body);
 
     return res.json({
@@ -88,13 +86,19 @@ apiRouter.post('/account', (req, res) => {
 
 
 
-
 apiRouter.get('/account', (req, res) => {
-    const data = {
-        state: 'error',
-        message: 'Nurodyk konkretu API endpoint\'a',
-    };
-    return res.json(account);
+      return res.json(account);
+});
+
+
+apiRouter.get('/account/:name-:surname', (req, res) => {
+    for (let i = 0; i < account.length; i++) {
+        if (req.params.name.toLowerCase() === account[i].name.toLowerCase() && req.params.surname.toLowerCase() === account[i].surname.toLowerCase()) {
+            return res.json(account[i]);
+        }
+
+    }
+    
 });
 
 
