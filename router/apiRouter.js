@@ -150,6 +150,19 @@ apiRouter.get('/account/jonas-jonaitis/:name', (req, res) => {
     }      
 });
 
+apiRouter.put('/account/jonas-jonaitis/:name', (req, res) => {   
+    for (let i = 0; i < account.length; i++) {
+        if (account[i].name.toLowerCase() === 'jonas') {
+            account[i].name = req.params.name;           
+        }
+    }
+     
+    return res.json({
+        state: 'success',
+        message: 'Vardas sėkmingai pakoreguotas',
+    });
+});
+
 
 
 
