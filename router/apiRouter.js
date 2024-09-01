@@ -119,6 +119,30 @@ apiRouter.delete('/account/:name-:surname', (req, res) => {
 
 
 
+apiRouter.put('/account/:name-:surname', (req, res) => {   
+    for (let i = 0; i < account.length; i++) {
+        if (req.params.name.toLowerCase() === account[i].name.toLowerCase()) {
+            account[i].name = req.body.name;
+            account[i].surname = req.body.surname;
+            account[i].year = req.body.year;
+            account[i].month = req.body.month;
+            account[i].day = req.body.day;
+            account[i].amount = req.body.amount;
+        }
+
+    }
+     
+    return res.json({
+        state: 'success',
+        message: 'Paskyra sėkmingai pakoreguota',
+    });
+});
+
+
+
+
+
+
 
 
 
