@@ -213,7 +213,7 @@ apiRouter.put('/account/jonas-jonaitis/dob/:year-:month-:day', (req, res) => {
 
 apiRouter.post('/account/deposit/:name/:amount', (req, res) => {   
 
-    const { amount } = req.params;
+    const amount = req.params.amount;
     const sum = parseFloat(amount);
 
     if (!Number.isInteger(sum) || sum < 0) {
@@ -240,7 +240,7 @@ apiRouter.post('/account/deposit/:name/:amount', (req, res) => {
 
 apiRouter.post('/account/withdrawal/:name/:amount', (req, res) => {  
     
-    const { amount } = req.params;
+    const amount = req.params.amount;
     const sum = parseFloat(amount);
 
     if (!Number.isInteger(sum) || sum < 0) {
@@ -267,7 +267,7 @@ apiRouter.post('/account/withdrawal/:name/:amount', (req, res) => {
 
 apiRouter.post('/account/transfer/:nameFrom/:nameTo/:amount', (req, res) => { 
     
-    const { amount } = req.params;
+    const amount = req.params.amount;
     const sum = parseFloat(amount);
 
     if (!Number.isInteger(sum) || sum < 0) {
@@ -277,7 +277,7 @@ apiRouter.post('/account/transfer/:nameFrom/:nameTo/:amount', (req, res) => {
         });
     }
 
-    
+
     for (let i = 0; i < account.length; i++) {
         if (req.params.nameFrom.toLowerCase() === account[i].name.toLowerCase()) {
             account[i].amount = account[i].amount - req.params.amount;
